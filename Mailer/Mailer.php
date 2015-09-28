@@ -113,6 +113,8 @@ abstract class Mailer implements CakeEventListener {
 			]);
 		}
 
+		$this->_email->setHeaders($headers);
+
 		$views = $this->_email->template(false);
 		if (!$views['template']) {
 			$this->template($action);
