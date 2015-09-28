@@ -54,7 +54,7 @@ abstract class Mailer implements CakeEventListener {
 			$this->name = str_replace(
 				'Mailer',
 				'',
-				join('', array_slice(explode('\\', get_class($this)), -1))
+				get_class($this)
 			);
 		}
 		return $this->name;
@@ -108,7 +108,7 @@ abstract class Mailer implements CakeEventListener {
 	public function send($action, $args = [], $headers = []) {
 		if (!method_exists($this, $action)) {
 			throw new MissingMailerActionException([
-				'mailer' => $this->getName() . 'Mailer',
+				'mailer' => get_class($this),
 				'action' => $action,
 			]);
 		}
